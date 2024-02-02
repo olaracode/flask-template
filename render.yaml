@@ -4,7 +4,8 @@ services:
   - type: web
     region: ohio # Region de Render
     name: flask-template # Nombre de la aplicacion
-    buildCommand: build.sh # Script de construccion
+    env: python # entorno de desarrollo
+    buildCommand: "build.sh" # Script de construccion
     startCommand: "gunicorn wsgi --chdir ./src/" # comando de ejecucion
     plan: free
     numInstances: 1
