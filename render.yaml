@@ -1,22 +1,21 @@
-# Yet Another Markup Language
-
+# From: https://github.com/4GeeksAcademy/flask-rest-hello/blob/main/render.yml
 services:
-  - type: web
-    region: ohio # Region de Render
-    name: flask-template # Nombre de la aplicacion
-    env: python # entorno de desarrollo
-    buildCommand: "build.sh" # Script de construccion
-    startCommand: "gunicorn wsgi --chdir ./src/" # comando de ejecucion
-    plan: free
+  - type: web # valid values: https://render.com/docs/yaml-spec#type
+    region: ohio
+    name: flask-rest-hello
+    env: python # valid values: https://render.com/docs/yaml-spec#environment
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn src.wsgi:app"
+    plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
-      - key: POSTGRES_URL
-        fromDabatase:
-          name: flask-template-psql
+      - key: DATABASE_URL # Render PostgreSQL database
+        fromDatabase:
+          name: flask-rest-42170
           property: connectionString
 
-databases:
-  - name: flask-template-psql
+databases: # Render PostgreSQL database
+  - name: flask-rest-42170
     region: ohio
-    plan: free
-    ipAllowList: [] # Nada mas permite conxiones internas(desde render)
+    ipAllowList: [] # only allow internal connections
+    plan: free # optional; defaults to starter
