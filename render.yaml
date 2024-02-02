@@ -7,7 +7,7 @@ services:
     buildCommand: build.sh # Script de construccion
     startCommand: "gunicorn wsgi --chdir ./src/" # comando de ejecucion
     plan: free
-    env:
+    envVars:
       - key: POSTGRES_URL
         fromDabatase:
           name: flask-template-psql
