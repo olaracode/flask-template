@@ -5,11 +5,11 @@ services:
     name: flask-template
     env: python # valid values: https://render.com/docs/yaml-spec#environment
     buildCommand: "./build.sh"
-    startCommand: "gunicorn src.wsgi:app"
+    startCommand: "gunicorn wsgi --chdir ./src/"
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
-      - key: DATABASE_URL # Render PostgreSQL database
+      - key: POSTGRES_URL # Render PostgreSQL database
         fromDatabase:
           name: flask-rest-42170
           property: connectionString
