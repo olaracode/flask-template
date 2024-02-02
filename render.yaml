@@ -2,7 +2,7 @@
 services:
   - type: web # valid values: https://render.com/docs/yaml-spec#type
     region: ohio
-    name: flask-rest-hello
+    name: flask-template
     env: python # valid values: https://render.com/docs/yaml-spec#environment
     buildCommand: "./build.sh"
     startCommand: "gunicorn src.wsgi:app"
