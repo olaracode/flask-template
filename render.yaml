@@ -1,0 +1,20 @@
+# Yet Another Markup Language
+
+services:
+  - type: web
+    region: ohio # Region de Render
+    name: flask-template # Nombre de la aplicacion
+    buildCommand: build.sh # Script de construccion
+    startCommand: "gunicorn wsgi --chdir ./src/" # comando de ejecucion
+    plan: free
+    env:
+      - key: POSTGRES_URL
+        fromDabatase:
+          name: flask-template-psql
+          property: connectionString
+
+databases:
+  - name: flask-template-psql
+    region: ohio
+    plan: free
+    ipAllowList: [] # Nada mas permite conxiones internas(desde render)

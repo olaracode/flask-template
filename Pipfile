@@ -15,6 +15,7 @@ sqlalchemy = "*"
 [scripts]
 dev = "flask --app src.app run --debug"
 init = "flask --app src.app db init"
-
+migrate = "flask --app src.app db migrate"
+upgrade = "flask --app src.app db upgrade"
 [requires]
 python_version = "3.11"
